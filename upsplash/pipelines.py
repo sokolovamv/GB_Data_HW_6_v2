@@ -16,8 +16,8 @@ class UpsplashPipeline:
 
 class ImagesPipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
-        if item['photos']:
-            for img_url in item['photos']:
+        if item['images']:
+            for img_url in item['images']:
                 try:
                     yield scrapy.Request(img_url)
                 except Exception as e:
@@ -27,7 +27,7 @@ class ImagesPipeline(ImagesPipeline):
 
     def item_completed(self, results, item, info):
         if results:
-            item['photos'] = [itm[1] for itm in results if itm[0]]
+            item['images'] = [itm[1] for itm in results if itm[0]]
         return item
         #return super().item_completed(results, item, info)
 

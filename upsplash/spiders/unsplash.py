@@ -22,8 +22,8 @@ class UnsplashSpider(scrapy.Spider):
     def parse_image(self, response:HtmlResponse):
         loader = ItemLoader(item=UpsplashItem(), response=response)
         loader.add_xpath('name', '//h1/text()')
-        loader.add_xpath('category', '//div[@class="MbPKr M5vdR"]/div[@class="VZRk3 rLPoM"]/a/text()')
         loader.add_value('url', response.url)
+        loader.add_xpath('category', '//div[@class="MbPKr M5vdR"]/div[@class="VZRk3 rLPoM"]/a/text()')
         loader.add_xpath('images', '//button/div[@class="omfF5"]/div[@class="MorZF"]/img/@srcset')
 
         yield loader.load_item()
