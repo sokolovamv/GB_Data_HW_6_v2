@@ -15,7 +15,7 @@ class UnsplashSpider(scrapy.Spider):
         #self.start_urls = ["https://unsplash.com"]
 
     def parse(self, response):
-        links = response.xpath("//div[@class='zmDAx']/a[@class='rEAWd']")
+        links = response.xpath("//div[@class='zmDAx']/a[@class='rEAWd']").getall()
         for link in links:
             yield response.follow(link, callback=self.parse_image)
     
@@ -24,6 +24,6 @@ class UnsplashSpider(scrapy.Spider):
         loader.add_xpath('name', '//h1/text()')
         loader.add_xpath('category', '//div[@class="MbPKr M5vdR"]/div[@class="VZRk3 rLPoM"]/a/text()')
         loader.add_value('url', response.url)
-        loader.add_xpath('images', '//button/div[@class="omfF5"]/div[@class="MorZF"]/@srcset')
+        loader.add_xpath('images', '//button/div[@class="omfF5"]/div[@class="MorZF"]/img/@srcset')
 
         yield loader.load_item()

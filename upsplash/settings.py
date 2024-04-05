@@ -72,6 +72,8 @@ ITEM_PIPELINES = {
 
 IMAGES_STORE = 'images'
 
+FEED_EXPORT_FIELDS = ['name', 'category']
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
